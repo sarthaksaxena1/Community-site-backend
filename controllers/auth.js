@@ -176,8 +176,9 @@ exports.socialLogin = async (req, res) => {
         );
         res.cookie("t", token, { expire: new Date() + 9999 });
         // return response with user and token to frontend client
-        const { _id, name, email } = user;
-        return res.json({ token, user: { _id, name, email } });
+        const { _id, name, email, role } = user;
+        console.log("role if", role);
+        return res.json({ token, user: { _id, name, email, role } });
       } else {
         // update existing user with new social info and login
         req.profile = user;
@@ -191,8 +192,9 @@ exports.socialLogin = async (req, res) => {
         );
         res.cookie("t", token, { expire: new Date() + 9999 });
         // return response with user and token to frontend client
-        const { _id, name, email } = user;
-        return res.json({ token, user: { _id, name, email } });
+        const { _id, name, email, role } = user;
+        console.log("role else", role);
+        return res.json({ token, user: { _id, name, email, role } });
       }
     });
   }

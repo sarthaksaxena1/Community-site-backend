@@ -1,17 +1,18 @@
 const express = require("express");
 const {
-    userById,
-    allUsers,
-    getUser,
-    updateUser,
-    deleteUser,
-    userPhoto,
-    addFollowing,
-    addFollower,
-    removeFollowing,
-    removeFollower,
-    findPeople,
-    hasAuthorization
+  userById,
+  allUsers,
+  getUser,
+  updateUser,
+  deleteUser,
+  userPhoto,
+  addFollowing,
+  addFollower,
+  removeFollowing,
+  removeFollower,
+  findPeople,
+  hasAuthorization,
+  adminDelete,
 } = require("../controllers/user");
 const { requireSignin } = require("../controllers/auth");
 
@@ -32,5 +33,6 @@ router.get("/user/findpeople/:userId", requireSignin, findPeople);
 
 // any route containing :userId, our app will first execute userByID()
 router.param("userId", userById);
+router.delete("/delete/:id", requireSignin, adminDelete);
 
 module.exports = router;
